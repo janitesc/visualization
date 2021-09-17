@@ -29,7 +29,7 @@ Address `TODO` comments.
 Begin with those related to `GeneViewer` in `web`.
 The gene viewer should show genes as blocks on a line.
 
-Something along the lines of (just the figures, buttons not necessary at all):
+Something along the lines of (just a single one of the lines with blocks, buttons not necessary at all):
 
 ![vis](https://i.ytimg.com/vi/saIIaETgUW0/maxresdefault.jpg)
 
