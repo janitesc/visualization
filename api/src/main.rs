@@ -133,6 +133,7 @@ async fn Bigmol() -> impl Responder {
         let tempY = json!(tempJson["y"]).to_string();
         let mut tempSymbol = json!(tempJson["symbol"]).to_string();
         let mut tempSymbol: &str = &tempSymbol[1..tempSymbol.len() - 1];
+        let mut offset = 0;
         if tempSymbol.eq("C"){
             tempSymbol = "";
             offset = 1000;
