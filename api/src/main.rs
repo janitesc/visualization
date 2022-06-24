@@ -134,7 +134,8 @@ async fn Bigmol() -> impl Responder {
         let mut tempSymbol = json!(tempJson["symbol"]).to_string();
         let mut tempSymbol: &str = &tempSymbol[1..tempSymbol.len() - 1];
         if tempSymbol.eq("C"){
-            tempSymbol = ""
+            tempSymbol = "";
+            offset = 1000;
         } 
         let tempArray = [tempX, tempY, tempSymbol.to_string()];
         coordData.push(tempArray);
