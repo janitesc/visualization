@@ -1,5 +1,12 @@
 # Running
 
+## A NOTE:
+The code has been running for me consistently, and I'm consistently getting this result: 
+
+![Screenshot](Output.png)
+
+If for some reason geneviewer is not working, the first thing to do is to go into the main function in main.rs and change "mol" to "gene" and "8095" to "8080", and run the backend once like that, before changing it back. However, I've tried several tests and it has been working consistently, so I don't know if that's needed or not. 
+
 ## Front end
 Install [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
 
