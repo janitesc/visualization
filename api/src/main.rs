@@ -60,7 +60,7 @@ async fn gene() -> impl Responder {
 #[actix_web::get("/mol")]
 async fn mol() -> impl Responder {
     let mut coordData = vec![];
-    let mut BondData = vec![];
+    let mut bondData = vec![];
     let path1 = env::current_dir();
     let mut file = fs::File::open("mol.json").expect("Can't open file");
     let mut contents = String::new();
@@ -74,10 +74,12 @@ async fn mol() -> impl Responder {
         let tempY = json!(tempJson["y"]).to_string();
         let mut tempSymbol = json!(tempJson["symbol"]).to_string();
         let mut tempSymbol: &str = &tempSymbol[1..tempSymbol.len() - 1];
+        let mut offset = 0;
         if tempSymbol.eq("C"){
-            tempSymbol = ""
+            tempSymbol = "";
+            offset = 1000;
         } 
-        let tempArray = [tempX, tempY, tempSymbol.to_string()];
+        let tempArray = [tempX, tempY, tempSymbol.to_string(), offset.to_string()];
         coordData.push(tempArray);
     }
     for x in 0..8 {
@@ -101,15 +103,15 @@ async fn mol() -> impl Responder {
         let init = "0";
         let mut offset = "0";
         if tempZ.eq("2"){
-            offset = "10";
+            offset = "5";
 
         }
         let tempArray = [atom1X, atom1Y, atom2X, atom2Y, init, offset];
-        BondData.push(tempArray);
+        bondData.push(tempArray);
     }
     HttpResponse::Ok().json(serde_json::json!({
         "coordData":  coordData,
-        "BondData": BondData
+        "bondData": bondData
     }))
 
 }
@@ -117,7 +119,7 @@ async fn mol() -> impl Responder {
 #[actix_web::get("/Bigmol")]
 async fn Bigmol() -> impl Responder {
     let mut coordData = vec![];
-    let mut BondData = vec![];
+    let mut bondData = vec![];
     let path1 = env::current_dir();
     let mut file = fs::File::open("bigger_mol.json").expect("Can't open file");
     let mut contents = String::new();
@@ -161,12 +163,13 @@ async fn Bigmol() -> impl Responder {
             offset = "10";
 
         }
-        let tempArray = [atom1X, atom1Y, atom2X, atom2Y, init, offset];
-        BondData.push(tempArray);
+        let tempArray = [atom1X.to_string(), atom1Y.to_string(), atom2X.to_string(), atom2Y.to_string(), init.to_string(), offset.to_string()];
+        bondData.push(tempArray);
     }
+
     HttpResponse::Ok().json(serde_json::json!({
         "coordData":  coordData,
-        "BondData": BondData
+        "bondData": bondData
     }))
 
 }
@@ -180,9 +183,9 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Cors::permissive())
             .wrap(Logger::default())
-            .service(gene)
+            .service(mol)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 8095))?
     .run()
     .await
     

@@ -55,5 +55,6 @@ import App from "../App.svelte";
     </rect> />
     <text x="1334" y={i*30 + 13}>Motif {i+1} </text>
     {/each}
+    
   </svg>
 </div>

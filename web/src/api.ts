@@ -13,11 +13,11 @@ export type mol = {
   coordData: [[string]]
   //I want this to include: ID number, coordinate data, classification
   //coordinateData: [[string]],
-  bonddata: [[string]]
+  bondData: [[string]]
 };
 
 
 // Fetches a random collection of genes from the API
 export function getmol(): Promise<mol> {
-  return fetch("http://localhost:8085/mol").then((resp) => resp.json()).catch((err) => console.error(err));
+  return fetch("http://localhost:8095/mol").then((resp) => resp.json()).catch((err) => console.error(err));
 }

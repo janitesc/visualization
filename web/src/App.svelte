@@ -3,18 +3,18 @@
   // TODO: implement GeneViewer by calling into the /genes api endpoint to get data
   // TODO: add a MolViewer along the same lines
   import GeneViewer from "./components/GeneViewer.svelte";
+  import MolViewer from "./components/MolViewer.svelte";
   import { getGenes, Genes } from "./api";
   import { getmol, mol } from "./api";
   import { onMount } from "svelte";
   let lengthdata;
   let genesdata = [];
   let Coorddata = [];
-  let bonddata = [];
+  let bondData = [];
   debugger;
   onMount(async () => {
   const mol = getmol();
   const genes = getGenes();
-  debugger;
   await getGenes();
   await getmol();
   //for multiple genes, I would make another array and make an
@@ -22,12 +22,10 @@
   genes.then((data) => {
     lengthdata = data.length;
     genesdata = data.genes;
-    console.log(lengthdata[0]);
   })
   mol.then((data) => {
     Coorddata = data.coordData;
-    bonddata = data.bonddata;
-    console.log(Coorddata[0]);
+    bondData = data.bondData;
   })
 });
 </script>
@@ -39,9 +37,8 @@
   graph was neat and easy to read.  -->
   <div>
     <GeneViewer length = {lengthdata} genedata = {genesdata} />
-    
   </div>
-  <div id="last">
+  <div>
     <svg width="1350" height="100">
       <line x1="25" x2="1225" y1="10" y2="10"></line>
       <text x="25" y = "0">0</text>
@@ -57,8 +54,12 @@
         <text x="1225" y = "0">{lengthdata}</text>
       </svg>
   </div>
- Length: {lengthdata}
-
+  <div>
+    MOLVIEWER:
+  </div>
+ <div>
+  <MolViewer coordData = {Coorddata} bondData = {bondData} />
+</div>
 </main>
 
 <style>
