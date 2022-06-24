@@ -3,8 +3,6 @@
 import App from "../App.svelte";
   export let length: number;
   export let genedata = [];
-  debugger;
-  console.log(genedata);
   console.debug(getGenes());
   //In a bigger group of genes, I would autogenerate this and call however
   //many colors were needed, but a smaller sample meant
@@ -48,14 +46,14 @@ import App from "../App.svelte";
 <div>
   <!-- For multiple genes, I would space them out a bit closer, and only repeat motifs
   one time-->
-  <svg width="1500" height="300">
-    <line x1="50" x2=1350 y1="50" y2="50"></line>
+  <svg width="1350" height="300">
+    <line x1="25" x2=1225 y1="50" y2="50"></line>
     {#each genedata as Array,i}
-    <rect x={[(Array[0]/length)*1300+50]} y="0" width={[(Array[1]/length)*1300+100]-[[(Array[0]/length)*1300+100]]} height="100" rx="10" ry="10" id="Motif [i]"style="fill:{[colors[i]]};" />
-    <rect x="1365" y={i*30} width={15} height="15" rx="3" ry="3" id="Motif [i]" style="fill:{[colors[i]]};">
+    <rect x={[(Array[0]/length)*1200+25]} y="0" width={[(Array[1]/length)*1200+25]-[[(Array[0]/length)*1200+25]]} height="100" rx="10" ry="10" id="Motif [i]"style="fill:{[colors[i]]};" />
+    <rect x="1315" y={i*30} width={15} height="15" rx="3" ry="3" id="Motif [i]" style="fill:{[colors[i]]};">
       <title>Motif {i+1}</title>
     </rect> />
-    <text x="1384" y={i*30 + 13}>Motif {i+1} </text>
+    <text x="1334" y={i*30 + 13}>Motif {i+1} </text>
     {/each}
   </svg>
 </div>
